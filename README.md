@@ -8,11 +8,9 @@ A decentralized escrow application built on **Stellar Soroban** enabling trustle
 
 ## 📸 Screenshots
 
-> _Replace these placeholders with actual screenshots after deployment._
-
 | Dark Mode | Light Mode |
 |-----------|------------|
-| ![Dark Mode](screenshots/dark-mode.png) | ![Light Mode](screenshots/light-mode.png) |
+| ![Dark Mode](https://github.com/user-attachments/assets/9a5efd94-300c-49f1-a16b-5158d788e137) | ![Light Mode](https://github.com/user-attachments/assets/5a48b7db-565e-411a-8869-018fa9d311a7) |
 
 ---
 
@@ -42,8 +40,7 @@ test test::test_submit_without_init - should panic ... ok
 test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 ```
 
-> _Replace with a screenshot of actual test output:_
-> ![Test Output](screenshots/test-output.png)
+
 
 ---
 
@@ -139,8 +136,8 @@ Micro-Escrow DApp(Orange Belt)/
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/YOUR_USERNAME/micro-escrow-dapp.git
-cd micro-escrow-dapp
+git clone https://github.com/Aditya-linux/Micro-Escrow-Stellar---Orange-Belt-.git
+cd Micro-Escrow-Stellar---Orange-Belt-
 cd frontend && npm install
 ```
 
