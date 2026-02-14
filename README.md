@@ -10,8 +10,7 @@ A decentralized escrow application built on **Stellar Soroban** enabling trustle
 
 | Dark Mode | Light Mode |
 |-----------|------------|
-| ![Dark Mode](https://github.com/user-attachments/assets/9a5efd94-300c-49f1-a16b-5158d788e137) | ![Light Mode](<img width="1273" height="975" alt="image" src="https://github.com/user-attachments/assets/5ae51d82-6b06-4ae8-8488-5337688adc7b" />
-) |
+| ![Dark Mode](https://github.com/user-attachments/assets/9a5efd94-300c-49f1-a16b-5158d788e137) | ![Light Mode]("https://github.com/user-attachments/assets/5ae51d82-6b06-4ae8-8488-5337688adc7b") |
 
 ---
 
