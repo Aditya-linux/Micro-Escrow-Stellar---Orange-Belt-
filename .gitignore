@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build artifacts
+contract/target/
+frontend/.next/
+frontend/out/
+
+# Environment
+.env
+.env.local
+.env.production
+frontend/.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp files
+clean_id.txt
+deploy_output.txt
+
+# Gemini agent artifacts
+.gemini/
