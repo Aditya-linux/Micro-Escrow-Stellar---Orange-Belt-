@@ -24,7 +24,7 @@ A decentralized escrow application built on **Stellar Soroban** enabling trustle
 
 ## 🌐 Live Demo
 
-> 🔗 [Live dApp on Vercel](YOUR_VERCEL_DEPLOYMENT_LINK_HERE)
+> 🔗 [Live dApp on Vercel](https://micro-escrow-stellar-orange-belt.vercel.app/)
 
 ---
 
