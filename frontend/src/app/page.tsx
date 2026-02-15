@@ -18,7 +18,7 @@ import {
 import { Loader2, CheckCircle, Lock, Hammer, Coins, LogOut, Wallet, Sun, Moon, Shield, ArrowRight, ExternalLink, RefreshCw } from "lucide-react";
 import WalletModal from "@/components/WalletModal";
 
-const CONTRACT_ID = "CBXXR64NKDHSUVDNFSRCT4L3EHB5EGNNWI5U2M6OXA6JZK7HD2CEK3IR";
+const CONTRACT_ID = "CCW4OSLZPQUGVSTTZR4H77R4MFPJFPR4UMWDYH6CLMGGJN6VOXFHRJZB";
 const XLM_TOKEN_ID = "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC";
 const RPC_URL = "https://soroban-testnet.stellar.org";
 const NETWORK_PASSPHRASE = Networks.TESTNET;
@@ -37,9 +37,9 @@ const steps = [
 ];
 
 const walletBadgeConfig: Record<string, { bg: string; text: string }> = {
-  freighter: { bg: "bg-violet-500/15 dark:bg-violet-500/20", text: "text-violet-600 dark:text-violet-400" },
-  albedo: { bg: "bg-blue-500/15 dark:bg-blue-500/20", text: "text-blue-600 dark:text-blue-400" },
-  xbull: { bg: "bg-amber-500/15 dark:bg-amber-500/20", text: "text-amber-600 dark:text-amber-400" },
+  freighter: { bg: "bg-neo-yellow/30", text: "text-foreground" },
+  albedo: { bg: "bg-neo-cyan/30", text: "text-foreground" },
+  xbull: { bg: "bg-neo-orange/30", text: "text-foreground" },
 };
 
 export default function Home() {
@@ -169,18 +169,18 @@ export default function Home() {
           : 0;
 
   return (
-    <div className="min-h-screen gradient-bg">
+    <div className="min-h-screen dot-grid">
       {/* ── Header / Navbar ── */}
-      <header className="sticky top-0 z-40 glass border-b border-white/10 dark:border-white/5">
+      <header className="sticky top-0 z-40 bg-background border-b-3 border-border">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center shadow-lg shadow-purple-500/25">
-              <Shield className="h-5 w-5 text-white" />
+            <div className="h-10 w-10 rounded-lg bg-neo-yellow border-3 border-foreground flex items-center justify-center neo-shadow-sm">
+              <Shield className="h-5 w-5 text-foreground" />
             </div>
             <div>
-              <h1 className="text-base font-bold tracking-tight">Micro-Escrow</h1>
-              <p className="text-[10px] text-muted-foreground -mt-0.5 font-medium uppercase tracking-widest">Stellar Testnet</p>
+              <h1 className="text-lg font-bold tracking-tight">Micro-Escrow</h1>
+              <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-[0.2em]">Stellar Testnet</p>
             </div>
           </div>
 
@@ -189,13 +189,13 @@ export default function Home() {
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="h-9 w-9 rounded-xl glass-card flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-200"
+              className="h-10 w-10 rounded-lg border-3 border-foreground bg-card flex items-center justify-center neo-shadow-sm hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-neo active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
-                <Sun className="h-4 w-4 text-amber-400" />
+                <Sun className="h-5 w-5 text-neo-yellow" />
               ) : (
-                <Moon className="h-4 w-4 text-purple-600" />
+                <Moon className="h-5 w-5 text-foreground" />
               )}
             </button>
 
@@ -203,7 +203,7 @@ export default function Home() {
             {!isConnected ? (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="h-9 px-4 rounded-xl bg-gradient-to-r from-purple-500 to-blue-600 text-white text-sm font-semibold flex items-center gap-2 hover:shadow-lg hover:shadow-purple-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="h-10 px-5 rounded-lg bg-neo-yellow text-foreground text-sm font-bold flex items-center gap-2 neo-btn"
               >
                 <Wallet className="h-4 w-4" />
                 <span className="hidden sm:inline">Connect</span>
@@ -211,22 +211,22 @@ export default function Home() {
             ) : (
               <div className="flex items-center gap-2">
                 {walletType && (
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg ${walletBadgeConfig[walletType]?.bg} ${walletBadgeConfig[walletType]?.text}`}>
+                  <span className={`neo-badge ${walletBadgeConfig[walletType]?.bg} ${walletBadgeConfig[walletType]?.text}`}>
                     {walletType.charAt(0).toUpperCase() + walletType.slice(1)}
                   </span>
                 )}
-                <div className="h-9 px-3 rounded-xl glass-card flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-sm font-mono font-medium">
+                <div className="h-10 px-3 rounded-lg border-3 border-foreground bg-card flex items-center gap-2 neo-shadow-sm">
+                  <div className="h-2.5 w-2.5 rounded-full bg-neo-green border-2 border-foreground" />
+                  <span className="text-sm font-mono font-bold">
                     {address.slice(0, 4)}…{address.slice(-4)}
                   </span>
                 </div>
                 <button
                   onClick={disconnect}
-                  className="h-9 w-9 rounded-xl glass-card flex items-center justify-center hover:bg-red-500/10 dark:hover:bg-red-500/20 transition-all duration-200 group"
+                  className="h-10 w-10 rounded-lg border-3 border-foreground bg-card flex items-center justify-center neo-shadow-sm hover:bg-neo-red/15 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-neo active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-100 group"
                   title="Disconnect"
                 >
-                  <LogOut className="h-4 w-4 text-muted-foreground group-hover:text-red-500 transition-colors" />
+                  <LogOut className="h-4 w-4 text-muted-foreground group-hover:text-neo-red transition-colors" />
                 </button>
               </div>
             )}
@@ -238,34 +238,34 @@ export default function Home() {
       <main className="max-w-2xl mx-auto px-6 py-12">
         {/* Hero section */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-medium text-muted-foreground mb-4">
-            <div className="h-1.5 w-1.5 rounded-full bg-purple-500 animate-pulse" />
-            Powered by Soroban Smart Contracts
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-neo-cyan/20 border-3 border-foreground neo-shadow-sm text-xs font-bold uppercase tracking-wider mb-5">
+            <div className="h-2 w-2 rounded-full bg-neo-cyan border-2 border-foreground" />
+            Powered by Soroban
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 leading-tight">
             Trustless{" "}
-            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+            <span className="bg-neo-yellow px-2 py-0.5 border-3 border-foreground rounded-lg inline-block neo-shadow-sm">
               Escrow
             </span>{" "}
             Payments
           </h2>
-          <p className="text-muted-foreground max-w-md mx-auto text-sm leading-relaxed">
+          <p className="text-muted-foreground max-w-md mx-auto text-base leading-relaxed font-medium">
             Lock funds in a smart contract. Release only when work is delivered.
             No middlemen, no chargebacks.
           </p>
         </div>
 
         {/* ── Progress Stepper ── */}
-        <div className="glass-card rounded-2xl p-6 mb-6">
+        <div className="neo-card p-6 mb-6">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-semibold">Escrow Progress</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider">Escrow Progress</h3>
             <button
               onClick={fetchContractState}
               disabled={isRefreshing}
-              className="h-7 w-7 rounded-lg hover:bg-muted flex items-center justify-center transition-colors"
+              className="h-8 w-8 rounded-lg border-3 border-foreground bg-card flex items-center justify-center hover:bg-muted transition-colors active:translate-x-[1px] active:translate-y-[1px]"
               title="Refresh state"
             >
-              <RefreshCw className={`h-3.5 w-3.5 text-muted-foreground ${isRefreshing ? "animate-spin" : ""}`} />
+              <RefreshCw className={`h-3.5 w-3.5 text-foreground ${isRefreshing ? "animate-spin" : ""}`} />
             </button>
           </div>
 
@@ -281,11 +281,11 @@ export default function Home() {
                   {/* Step circle */}
                   <div className="flex flex-col items-center">
                     <div
-                      className={`h-11 w-11 rounded-xl flex items-center justify-center transition-all duration-500 ${isComplete
-                        ? "bg-gradient-to-br from-purple-500 to-blue-600 text-white shadow-lg shadow-purple-500/30"
+                      className={`h-12 w-12 rounded-lg border-3 flex items-center justify-center transition-all duration-300 ${isComplete
+                        ? "bg-neo-yellow border-foreground neo-shadow-sm text-foreground"
                         : isActive
-                          ? "bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-500 dark:text-purple-400 ring-2 ring-purple-500/40"
-                          : "bg-muted text-muted-foreground"
+                          ? "bg-neo-cyan/20 border-foreground neo-shadow-sm text-foreground ring-2 ring-neo-cyan ring-offset-2 ring-offset-background"
+                          : "bg-muted border-foreground/30 text-muted-foreground"
                         }`}
                     >
                       {isComplete ? (
@@ -295,8 +295,8 @@ export default function Home() {
                       )}
                     </div>
                     <span
-                      className={`text-[11px] mt-2 font-medium transition-colors ${isComplete
-                        ? "text-purple-600 dark:text-purple-400"
+                      className={`text-[11px] mt-2 font-bold uppercase tracking-wider transition-colors ${isComplete
+                        ? "text-foreground"
                         : isActive
                           ? "text-foreground"
                           : "text-muted-foreground"
@@ -308,11 +308,8 @@ export default function Home() {
 
                   {/* Connector line */}
                   {!isLast && (
-                    <div className="flex-1 mx-3 h-0.5 rounded-full bg-muted overflow-hidden mt-[-18px]">
-                      <div
-                        className="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-700 ease-out"
-                        style={{ width: isComplete ? "100%" : "0%" }}
-                      />
+                    <div className="flex-1 mx-3 mt-[-18px]">
+                      <div className={`h-[3px] w-full rounded-none transition-all duration-500 ${isComplete ? "bg-foreground" : "bg-foreground/15 border-t-[3px] border-dashed border-foreground/30"}`} />
                     </div>
                   )}
                 </div>
@@ -322,17 +319,17 @@ export default function Home() {
         </div>
 
         {/* ── Status Card ── */}
-        <div className="glass-card rounded-2xl p-6 mb-6">
+        <div className="neo-card p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold">Current Status</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider">Current Status</h3>
             <div
-              className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${contractState === EscrowState.Unknown
-                ? "bg-slate-500/10 text-slate-500"
+              className={`neo-badge ${contractState === EscrowState.Unknown
+                ? "bg-muted text-muted-foreground"
                 : contractState === EscrowState.Pending
-                  ? "bg-amber-500/15 text-amber-600 dark:text-amber-400"
+                  ? "bg-neo-yellow text-foreground"
                   : contractState === EscrowState.Submitted
-                    ? "bg-blue-500/15 text-blue-600 dark:text-blue-400"
-                    : "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+                    ? "bg-neo-cyan text-foreground"
+                    : "bg-neo-green text-foreground"
                 }`}
             >
               {contractState === EscrowState.Unknown && "Not Initialized"}
@@ -344,63 +341,63 @@ export default function Home() {
 
           {/* Stats row */}
           <div className="grid grid-cols-3 gap-3 mb-5">
-            <div className="rounded-xl bg-muted/50 p-3 text-center">
-              <p className="text-lg font-bold">100</p>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">XLM Locked</p>
+            <div className="rounded-lg border-3 border-foreground bg-neo-yellow/10 p-3 text-center neo-shadow-sm">
+              <p className="text-xl font-bold">100</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] font-bold">XLM Locked</p>
             </div>
-            <div className="rounded-xl bg-muted/50 p-3 text-center">
-              <p className="text-lg font-bold">2</p>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Parties</p>
+            <div className="rounded-lg border-3 border-foreground bg-neo-cyan/10 p-3 text-center neo-shadow-sm">
+              <p className="text-xl font-bold">2</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] font-bold">Parties</p>
             </div>
-            <div className="rounded-xl bg-muted/50 p-3 text-center">
-              <p className="text-lg font-bold">{currentStep}/3</p>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Steps Done</p>
+            <div className="rounded-lg border-3 border-foreground bg-neo-pink/10 p-3 text-center neo-shadow-sm">
+              <p className="text-xl font-bold">{currentStep}/3</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] font-bold">Steps Done</p>
             </div>
           </div>
 
           {/* State specific details */}
-          <div className="rounded-xl bg-muted/30 border border-border/50 p-4 flex items-center gap-4">
+          <div className="rounded-lg border-3 border-foreground bg-card p-4 flex items-center gap-4">
             {contractState === EscrowState.Unknown && (
               <>
-                <div className="h-10 w-10 rounded-xl bg-slate-500/10 flex items-center justify-center shrink-0">
-                  <Lock className="h-5 w-5 text-slate-400" />
+                <div className="h-11 w-11 rounded-lg bg-muted border-3 border-foreground/30 flex items-center justify-center shrink-0">
+                  <Lock className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium">No Active Escrow</p>
-                  <p className="text-xs text-muted-foreground">Initialize an escrow to lock 100 XLM for a freelancer.</p>
+                  <p className="text-sm font-bold">No Active Escrow</p>
+                  <p className="text-xs text-muted-foreground font-medium">Initialize an escrow to lock 100 XLM for a freelancer.</p>
                 </div>
               </>
             )}
             {contractState === EscrowState.Pending && (
               <>
-                <div className="h-10 w-10 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
-                  <Lock className="h-5 w-5 text-amber-500" />
+                <div className="h-11 w-11 rounded-lg bg-neo-yellow/20 border-3 border-foreground flex items-center justify-center shrink-0">
+                  <Lock className="h-5 w-5 text-foreground" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Funds Locked — 100 XLM</p>
-                  <p className="text-xs text-muted-foreground">Waiting for the freelancer to submit proof of work.</p>
+                  <p className="text-sm font-bold">Funds Locked — 100 XLM</p>
+                  <p className="text-xs text-muted-foreground font-medium">Waiting for the freelancer to submit proof of work.</p>
                 </div>
               </>
             )}
             {contractState === EscrowState.Submitted && (
               <>
-                <div className="h-10 w-10 rounded-xl bg-blue-500/15 flex items-center justify-center shrink-0">
-                  <Hammer className="h-5 w-5 text-blue-500" />
+                <div className="h-11 w-11 rounded-lg bg-neo-cyan/20 border-3 border-foreground flex items-center justify-center shrink-0">
+                  <Hammer className="h-5 w-5 text-foreground" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Work Delivered</p>
-                  <p className="text-xs text-muted-foreground">Client can now review and release the funds.</p>
+                  <p className="text-sm font-bold">Work Delivered</p>
+                  <p className="text-xs text-muted-foreground font-medium">Client can now review and release the funds.</p>
                 </div>
               </>
             )}
             {contractState === EscrowState.Released && (
               <>
-                <div className="h-10 w-10 rounded-xl bg-emerald-500/15 flex items-center justify-center shrink-0">
-                  <CheckCircle className="h-5 w-5 text-emerald-500" />
+                <div className="h-11 w-11 rounded-lg bg-neo-green/20 border-3 border-foreground flex items-center justify-center shrink-0">
+                  <CheckCircle className="h-5 w-5 text-foreground" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Escrow Complete</p>
-                  <p className="text-xs text-muted-foreground">Funds have been released to the freelancer.</p>
+                  <p className="text-sm font-bold">Escrow Complete</p>
+                  <p className="text-xs text-muted-foreground font-medium">Funds have been released to the freelancer.</p>
                 </div>
               </>
             )}
@@ -408,21 +405,21 @@ export default function Home() {
         </div>
 
         {/* ── Action Card ── */}
-        <div className="glass-card rounded-2xl p-6">
-          <h3 className="text-sm font-semibold mb-4">Actions</h3>
+        <div className="neo-card p-6">
+          <h3 className="text-sm font-bold uppercase tracking-wider mb-4">Actions</h3>
 
           {!isConnected ? (
             <div className="text-center py-8">
-              <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-purple-500/15 to-blue-500/15 flex items-center justify-center mx-auto mb-4">
-                <Wallet className="h-7 w-7 text-purple-500" />
+              <div className="h-16 w-16 rounded-lg border-3 border-foreground bg-neo-yellow/15 flex items-center justify-center mx-auto mb-4 neo-shadow-sm">
+                <Wallet className="h-8 w-8 text-foreground" />
               </div>
-              <p className="text-sm font-medium mb-1">Connect Your Wallet</p>
-              <p className="text-xs text-muted-foreground mb-5">
+              <p className="text-base font-bold mb-1">Connect Your Wallet</p>
+              <p className="text-sm text-muted-foreground mb-5 font-medium">
                 Connect a Stellar wallet to interact with the escrow contract.
               </p>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center gap-2 px-6 h-11 rounded-xl bg-gradient-to-r from-purple-500 to-blue-600 text-white text-sm font-semibold hover:shadow-xl hover:shadow-purple-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="inline-flex items-center gap-2 px-7 h-12 rounded-lg bg-neo-yellow text-foreground text-sm font-bold neo-btn"
               >
                 <Wallet className="h-4 w-4" />
                 Connect Wallet
@@ -433,13 +430,13 @@ export default function Home() {
               {contractState === EscrowState.Unknown && (
                 <>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1.5 block">
+                    <label className="text-xs font-bold text-muted-foreground mb-1.5 block uppercase tracking-wider">
                       Freelancer Address
                     </label>
                     <input
                       type="text"
-                      placeholder="G..."
-                      className="w-full h-11 px-4 rounded-xl bg-muted/50 border border-border/50 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-transparent transition-all"
+                      placeholder="GABCD…"
+                      className="w-full h-12 px-4 neo-input text-sm placeholder:text-muted-foreground/50 font-mono"
                       value={freelancerAddr}
                       onChange={(e) => setFreelancerAddr(e.target.value)}
                     />
@@ -447,10 +444,10 @@ export default function Home() {
                   <button
                     onClick={initializeEscrow}
                     disabled={isLoading || !freelancerAddr}
-                    className="w-full h-12 rounded-xl bg-gradient-to-r from-purple-500 to-blue-600 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-purple-500/25 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none transition-all duration-200"
+                    className="w-full h-13 rounded-lg bg-neo-yellow text-foreground font-bold text-sm flex items-center justify-center gap-2 neo-btn disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-neo"
                   >
                     {isLoading ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <Loader2 className="h-5 w-5 animate-spin" />
                     ) : (
                       <>
                         <Lock className="h-4 w-4" />
@@ -466,10 +463,10 @@ export default function Home() {
                 <button
                   onClick={submitWork}
                   disabled={isLoading}
-                  className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-blue-500/25 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                  className="w-full h-13 rounded-lg bg-neo-cyan text-foreground font-bold text-sm flex items-center justify-center gap-2 neo-btn disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-5 w-5 animate-spin" />
                   ) : (
                     <>
                       <Hammer className="h-4 w-4" />
@@ -484,10 +481,10 @@ export default function Home() {
                 <button
                   onClick={releaseFunds}
                   disabled={isLoading}
-                  className="w-full h-12 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-emerald-500/25 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                  className="w-full h-13 rounded-lg bg-neo-green text-foreground font-bold text-sm flex items-center justify-center gap-2 neo-btn disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-5 w-5 animate-spin" />
                   ) : (
                     <>
                       <Coins className="h-4 w-4" />
@@ -499,12 +496,12 @@ export default function Home() {
               )}
 
               {contractState === EscrowState.Released && (
-                <div className="text-center py-4">
-                  <div className="h-12 w-12 rounded-2xl bg-emerald-500/15 flex items-center justify-center mx-auto mb-3">
-                    <CheckCircle className="h-6 w-6 text-emerald-500" />
+                <div className="text-center py-6">
+                  <div className="h-14 w-14 rounded-lg border-3 border-foreground bg-neo-green/20 flex items-center justify-center mx-auto mb-3 neo-shadow-sm">
+                    <CheckCircle className="h-7 w-7 text-foreground" />
                   </div>
-                  <p className="text-sm font-medium">Escrow Complete</p>
-                  <p className="text-xs text-muted-foreground">All funds have been released successfully.</p>
+                  <p className="text-base font-bold">Escrow Complete</p>
+                  <p className="text-sm text-muted-foreground font-medium">All funds have been released successfully.</p>
                 </div>
               )}
             </div>
@@ -512,16 +509,16 @@ export default function Home() {
         </div>
 
         {/* ── Contract Info Footer ── */}
-        <div className="mt-6 flex items-center justify-center gap-4 text-[11px] text-muted-foreground">
-          <span className="font-mono">
+        <div className="mt-8 flex items-center justify-center gap-4 text-xs text-muted-foreground font-bold">
+          <span className="font-mono px-3 py-1.5 rounded-lg border-2 border-foreground/20 bg-card">
             Contract: {CONTRACT_ID.slice(0, 6)}…{CONTRACT_ID.slice(-4)}
           </span>
-          <span>•</span>
+          <span className="text-foreground/30">•</span>
           <a
             href={`https://stellar.expert/explorer/testnet/contract/${CONTRACT_ID}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 hover:text-purple-500 transition-colors"
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border-2 border-foreground/20 bg-card hover:border-foreground hover:neo-shadow-sm transition-all duration-100"
           >
             View on Explorer
             <ExternalLink className="h-3 w-3" />
