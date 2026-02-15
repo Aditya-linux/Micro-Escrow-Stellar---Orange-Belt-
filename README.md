@@ -5,14 +5,11 @@ A decentralized escrow application built on **Stellar Soroban** enabling trustle
 > **Orange Belt Challenge** — Stellar Developer Program
 
 ---
-
 ## 📸 Screenshots
 
 | Light Mode | Dark Mode |
 |:----------:|:---------:|
-| ![Light Mode](screenshots/light-mode.png) | ![Dark Mode](screenshots/dark-mode.png) |
-
----
+| <img src="https://github.com/user-attachments/assets/04a0c997-1d08-413d-a8fe-2aa9249a71f9" width="400" alt="Light Mode" /> | <img src="https://github.com/user-attachments/assets/378461d3-45cc-4c2f-829b-e37f7207f62d" width="400" alt="Dark Mode" /> |
 
 ## 🎬 Demo Video
 
