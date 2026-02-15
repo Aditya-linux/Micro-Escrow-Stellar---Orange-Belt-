@@ -8,39 +8,15 @@ A decentralized escrow application built on **Stellar Soroban** enabling trustle
 
 ## 📸 Screenshots
 
-| Dark Mode | Light Mode |
-|-----------|------------|
-| ![Dark Mode](https://github.com/user-attachments/assets/9a5efd94-300c-49f1-a16b-5158d788e137) | ![Light Mode]("https://github.com/user-attachments/assets/5ae51d82-6b06-4ae8-8488-5337688adc7b") |
+| Light Mode | Dark Mode |
+|:----------:|:---------:|
+| ![Light Mode](screenshots/light-mode.png) | ![Dark Mode](screenshots/dark-mode.png) |
 
 ---
 
 ## 🎬 Demo Video
 
-> 📹 [Watch the 1-minute demo video](YOUR_DEMO_VIDEO_LINK_HERE)
-
----
-
-## 🌐 Live Demo
-
-> 🔗 [Live dApp on Vercel](https://micro-escrow-stellar-orange-belt.vercel.app/)
-
----
-
-## ✅ Test Results
-
-4 contract tests passing:
-
-```
-running 4 tests
-test test::test_correct_initialization ... ok
-test test::test_cannot_release_before_submission - should panic ... ok
-test test::test_full_flow ... ok
-test test::test_submit_without_init - should panic ... ok
-
-test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
-```
-
-
+> 📹 [**Watch the Demo Video**](https://drive.google.com/file/d/1z9eG-0qLOSPIsXjAgfiii24OCaNSNLM9/view?usp=sharing)
 
 ---
 
@@ -72,9 +48,10 @@ Client (Initialize) → Funds Locked → Freelancer (Submit Work) → Client (Re
 |------------|---------|
 | **Next.js 16** (Turbopack) | React framework |
 | **TypeScript** | Type-safe development |
-| **@stellar/stellar-sdk** | Blockchain interactions |
-| **Tailwind CSS** | Utility-first styling |
+| **@stellar/stellar-sdk** v14 | Blockchain interactions |
+| **Tailwind CSS 3** | Utility-first styling |
 | **Lucide React** | Icons |
+| **Space Grotesk** | Bold, chunky typography |
 
 ### Multi-Wallet Support
 | Wallet | Type | Package |
@@ -85,14 +62,35 @@ Client (Initialize) → Funds Locked → Freelancer (Submit Work) → Client (Re
 
 ---
 
-## 🎨 Design Features
+## 🎨 Design — Soft Neo-Brutalist
 
-- **Glassmorphism UI** — Frosted glass cards with backdrop-blur
-- **Dark/Light Mode** — Toggle with localStorage persistence
-- **Animated Progress Stepper** — Visual escrow flow tracker
-- **Gradient Action Buttons** — Color-coded per step
-- **Multi-Wallet Modal** — Connect via Freighter, Albedo, or xBull
-- **Purple/Blue Palette** — Modern DApp aesthetic
+Inspired by **Panda CSS** and **Gumroad**, the UI uses a playful yet professional Neo-Brutalist design language:
+
+| Element | Style |
+|---------|-------|
+| **Borders** | Thick 3px solid borders on all cards, buttons, and inputs |
+| **Shadows** | Hard 4px offset shadows (no blur) with tactile press-down effects |
+| **Typography** | Space Grotesk — bold, chunky, geometric sans-serif |
+| **Background** | Off-white `#FFFDF7` with subtle dot-grid pattern |
+| **Accent Colors** | Vibrant yellow `#FFD60A`, cyan `#00E5FF`, pink `#FF6B9D`, green `#00D68F` |
+| **Interactions** | Buttons translate on hover (lift) and press down on click (shadow disappears) |
+| **Dark Mode** | Full dark theme with inverted borders and preserved accent colors |
+
+---
+
+## ✅ Test Results
+
+4 contract tests passing:
+
+```
+running 4 tests
+test test::test_correct_initialization ... ok
+test test::test_cannot_release_before_submission - should panic ... ok
+test test::test_full_flow ... ok
+test test::test_submit_without_init - should panic ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+```
 
 ---
 
@@ -109,15 +107,16 @@ Micro-Escrow DApp(Orange Belt)/
 │   ├── package.json
 │   └── src/
 │       ├── app/
-│       │   ├── globals.css           # Theme, glassmorphism, animations
-│       │   ├── layout.tsx            # Root layout with providers
+│       │   ├── globals.css           # Neo-Brutalist design system & utilities
+│       │   ├── layout.tsx            # Root layout with Space Grotesk font
 │       │   ├── providers.tsx         # Client-side ThemeProvider + WalletProvider
 │       │   └── page.tsx              # Main dApp interface
 │       ├── components/
-│       │   └── WalletModal.tsx       # Wallet selection modal
+│       │   └── WalletModal.tsx       # Wallet selection modal (3 wallets)
 │       └── context/
 │           ├── ThemeProvider.tsx      # Dark/light mode context
-│           └── WalletProvider.tsx     # Unified wallet abstraction
+│           └── WalletProvider.tsx     # Unified multi-wallet abstraction
+├── screenshots/                      # UI screenshots (light & dark mode)
 ├── deploy.ps1                        # Automated deploy script
 ├── DEPLOYMENT_GUIDE.md               # Step-by-step deployment docs
 ├── contract_id.txt                   # Current deployed contract ID
@@ -163,12 +162,14 @@ npm run dev
 
 ---
 
-## 🧪 Testing the Flow
+## 🧪 Testing the Full Escrow Flow
 
 1. Connect **Client** wallet (Freighter/Albedo/xBull)
 2. Enter freelancer's `G...` address → Click **"Initialize Escrow — 100 XLM"**
 3. Switch to **Freelancer** wallet → Click **"Submit Work"**
 4. Switch back to **Client** wallet → Click **"Release Funds"**
+
+> **Note:** The escrow contract is single-use. Once funds are released, redeploy a fresh contract for a new escrow. See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for details.
 
 ---
 
