@@ -1,6 +1,17 @@
-> **Stellar Developer Program — Orange Belt Challenge**
+> **Stellar Developer Program — Green Belt Challenge Upgrade**
+> Originally Orange Belt: A decentralized escrow application built on **Stellar Soroban** enabling trustless payments between a Client and a Freelancer. Funds are locked in a smart contract and released only when work is approved.
 
-A decentralized escrow application built on **Stellar Soroban** enabling trustless payments between a Client and a Freelancer. Funds are locked in a smart contract and released only when work is approved—eliminating middlemen and preventing unauthorized chargebacks.
+---
+## 🟢 Green Belt Submission Criteria
+
+- **Live Vercel Demo Link**: [Deploy Link Here]
+- **CI/CD Pipeline Badge**: [![CI/CD Pipeline](https://github.com/Aditya-linux/Micro-Escrow-Stellar---Orange-Belt-/actions/workflows/ci.yml/badge.svg)](https://github.com/Aditya-linux/Micro-Escrow-Stellar---Orange-Belt-/actions)
+- **Contract Address (Testnet)**: `[Paste CCW4... Address Here]`
+- **Transaction Hash (Inter-Contract Call / Fee Collection)**: `[Paste TX Hash Here]`
+
+### 📱 Mobile View
+*(Place your Mobile Screenshot here)*
+<img src="https://via.placeholder.com/250x500.png?text=Mobile+Screenshot" width="250" alt="Mobile View" />
 
 ---
 ## 📸 Screenshots
