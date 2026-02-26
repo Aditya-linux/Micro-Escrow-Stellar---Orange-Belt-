@@ -4,7 +4,7 @@
 ---
 ## 🟢 Green Belt Submission Criteria
 
-- **Live Vercel Demo Link**: [Deploy Link Here]
+- **Live Vercel Demo Link**: [(https://micro-escrow-stellar-orange-belt-if.vercel.app/)]
 - **CI/CD Pipeline Badge**: [![CI/CD Pipeline](https://github.com/Aditya-linux/Micro-Escrow-Stellar---Orange-Belt-/actions/workflows/ci.yml/badge.svg)](https://github.com/Aditya-linux/Micro-Escrow-Stellar---Orange-Belt-/actions)
 - **Contract Address (Testnet)**: `[Paste CCW4... Address Here]`
 - **Transaction Hash (Inter-Contract Call / Fee Collection)**: `[Paste TX Hash Here]`
