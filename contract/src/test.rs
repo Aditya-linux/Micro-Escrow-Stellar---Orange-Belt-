@@ -1,6 +1,6 @@
 #![cfg(test)]
 
-use super::{MicroEscrow, MicroEscrowClient, State};
+use super::{FeeCollector, FeeCollectorClient, MicroEscrow, MicroEscrowClient, State};
 use soroban_sdk::{testutils::Address as _, Address, Env};
 
 #[test]
@@ -10,6 +10,8 @@ fn test_correct_initialization() {
 
     let contract_id = e.register_contract(None, MicroEscrow);
     let client = MicroEscrowClient::new(&e, &contract_id);
+
+    let fee_collector_id = e.register_contract(None, FeeCollector);
 
     let user_client = Address::generate(&e);
     let freelancer = Address::generate(&e);
@@ -23,7 +25,7 @@ fn test_correct_initialization() {
     token_admin_client.mint(&user_client, &1000);
 
     // Initialize
-    client.initialize(&user_client, &freelancer, &token, &500);
+    client.initialize(&user_client, &freelancer, &fee_collector_id, &token, &500);
 
     // Verify state
     let state = client.get_state();
@@ -43,6 +45,8 @@ fn test_cannot_release_before_submission() {
     let contract_id = e.register_contract(None, MicroEscrow);
     let client = MicroEscrowClient::new(&e, &contract_id);
 
+    let fee_collector_id = e.register_contract(None, FeeCollector);
+
     let user_client = Address::generate(&e);
     let freelancer = Address::generate(&e);
     let token_admin = Address::generate(&e);
@@ -51,7 +55,7 @@ fn test_cannot_release_before_submission() {
     let token_admin_client = soroban_sdk::token::StellarAssetClient::new(&e, &token);
     token_admin_client.mint(&user_client, &1000);
 
-    client.initialize(&user_client, &freelancer, &token, &500);
+    client.initialize(&user_client, &freelancer, &fee_collector_id, &token, &500);
     
     // Try release immediately — should panic
     client.release_funds(&user_client);
@@ -65,6 +69,8 @@ fn test_full_flow() {
     let contract_id = e.register_contract(None, MicroEscrow);
     let client = MicroEscrowClient::new(&e, &contract_id);
 
+    let fee_collector_id = e.register_contract(None, FeeCollector);
+
     let user_client = Address::generate(&e);
     let freelancer = Address::generate(&e);
     let token_admin = Address::generate(&e);
@@ -74,7 +80,7 @@ fn test_full_flow() {
     let token_admin_client = soroban_sdk::token::StellarAssetClient::new(&e, &token);
     token_admin_client.mint(&user_client, &1000);
 
-    client.initialize(&user_client, &freelancer, &token, &500);
+    client.initialize(&user_client, &freelancer, &fee_collector_id, &token, &500);
 
     // Freelancer submits work
     client.submit_work_link(&freelancer);
@@ -84,9 +90,10 @@ fn test_full_flow() {
     client.release_funds(&user_client);
     assert_eq!(client.get_state(), State::Released);
 
-    // Verify balances
+    // Verify balances (98% to freelancer, 2% to fee collector)
     assert_eq!(token_client.balance(&contract_id), 0);
-    assert_eq!(token_client.balance(&freelancer), 500);
+    assert_eq!(token_client.balance(&freelancer), 490);
+    assert_eq!(token_client.balance(&fee_collector_id), 10);
 }
 
 #[test]
