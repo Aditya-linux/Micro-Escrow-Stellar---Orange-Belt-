@@ -4,14 +4,16 @@
 ---
 ## 🟢 Green Belt Submission Criteria
 
-- **Live Vercel Demo Link**: [Deploy Link Here]
+- **Live Vercel Demo Link**: [https://micro-escrow-stellar-orange-belt-if.vercel.app/](https://micro-escrow-stellar-orange-belt-if.vercel.app/)
 - **CI/CD Pipeline Badge**: [![CI/CD Pipeline](https://github.com/Aditya-linux/Micro-Escrow-Stellar---Orange-Belt-/actions/workflows/ci.yml/badge.svg)](https://github.com/Aditya-linux/Micro-Escrow-Stellar---Orange-Belt-/actions)
-- **Contract Address (Testnet)**: `[Paste CCW4... Address Here]`
-- **Transaction Hash (Inter-Contract Call / Fee Collection)**: `[Paste TX Hash Here]`
+- **Contract Address (Testnet)**: `CAZB7NBG4RBIY6AALBDH5Z72KIXPR37YVE2KT5IH5XTV3MMWXKKXHAZU`
+- **Transaction Hash (Inter-Contract Call / Fee Collection)**: `27cec566f25276cbaa9ceefa7f173965b5a9eed7ec89ecbda883fe00f8957a50`
 
 ### 📱 Mobile View
-*(Place your Mobile Screenshot here)*
-<img src="https://via.placeholder.com/250x500.png?text=Mobile+Screenshot" width="250" alt="Mobile View" />
+<div style="display: flex; gap: 10px;">
+  <img src="./screenshots/mobile_view_1.jpeg" width="250" alt="Mobile View 1" />
+  <img src="./screenshots/mobile_view_2.jpeg" width="250" alt="Mobile View 2" />
+</div>
 
 ---
 ## 📸 Screenshots
