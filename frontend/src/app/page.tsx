@@ -15,8 +15,9 @@ import {
   scValToNative,
   nativeToScVal,
 } from "@stellar/stellar-sdk";
-import { Loader2, CheckCircle, Lock, Hammer, Coins, LogOut, Wallet, Sun, Moon, Shield, ArrowRight, ExternalLink, RefreshCw } from "lucide-react";
+import { Loader2, CheckCircle, Lock, Hammer, Coins, LogOut, Wallet, Sun, Moon, Shield, ArrowRight, ExternalLink, RefreshCw, Bell } from "lucide-react";
 import WalletModal from "@/components/WalletModal";
+import { useSorobanEvents } from "@/hooks/useSorobanEvents";
 
 const CONTRACT_ID = "CCW4OSLZPQUGVSTTZR4H77R4MFPJFPR4UMWDYH6CLMGGJN6VOXFHRJZB";
 const XLM_TOKEN_ID = "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC";
@@ -50,6 +51,15 @@ export default function Home() {
   const [freelancerAddr, setFreelancerAddr] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [recentEvent, setRecentEvent] = useState<{ name: string, data: any } | null>(null);
+
+  useSorobanEvents(CONTRACT_ID, RPC_URL, (eventName, eventData) => {
+    setRecentEvent({ name: eventName, data: eventData });
+    // Clear toast after 5s
+    setTimeout(() => setRecentEvent(null), 5000);
+    // Refresh state
+    fetchContractState();
+  });
 
   const fetchContractState = useCallback(async () => {
     setIsRefreshing(true);
@@ -233,6 +243,26 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {/* Global Event Toast Notification */}
+      {recentEvent && (
+        <div className="fixed bottom-6 right-6 z-50 animate-slideUp">
+          <div className="bg-card border-3 border-foreground rounded-xl p-4 neo-shadow flex items-start gap-4 max-w-sm">
+            <div className="h-10 w-10 shrink-0 bg-neo-green/20 border-3 border-foreground rounded-lg flex items-center justify-center">
+              <Bell className="h-5 w-5 text-foreground" />
+            </div>
+            <div>
+              <p className="text-sm font-bold tracking-tight mb-1">Contract Event</p>
+              <p className="text-xs text-muted-foreground font-medium">
+                <span className="text-foreground tracking-wide font-bold">{recentEvent.name}</span> detected.
+              </p>
+            </div>
+            <button onClick={() => setRecentEvent(null)} className="absolute top-2 right-2 text-muted-foreground hover:text-foreground">
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── Main Content ── */}
       <main className="max-w-2xl mx-auto px-6 py-12">
